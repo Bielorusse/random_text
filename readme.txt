@@ -1,5 +1,6 @@
-Random text.
-
 Mix the words of a source text to create a random one.
 
-Version 0.1 of the 20180806.
+Version 0.2 of the 20181109.
+
+Added in this version:
+    -argument parser added

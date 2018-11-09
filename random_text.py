@@ -1,10 +1,10 @@
 """
 Mix the words of a source text to create a random one.
 
-Version 0.1 of the 20180806.
+Version 0.2 of the 20181109.
 """
 
-import re
+import argparse
 import random
 
 def clean_latex_text(input_file):
@@ -139,7 +139,12 @@ def random_newlines(words_list, nb_of_newlines):
 
 if __name__ == "__main__":
 
-    source_words = clean_latex_text("source_text2.txt")
+    parser = argparse.ArgumentParser("Random text.")
+    parser.add_argument("-input", help="input text file")
+    parser.add_argument("-output", help="output text file")
+    args = parser.parse_args()
+
+    source_words = clean_latex_text(args.input)
 
     source_words_wo_uppercase = remove_uppercase(source_words)
 
@@ -147,7 +152,7 @@ if __name__ == "__main__":
 
     random_words = add_uppercase(random_words_wo_uppercase)
 
-    with open("random_text1.txt", "w") as file:
+    with open("{}_1.txt".format(args.output[:-4]), "w") as file:
 
         for word in random_words:
 
@@ -157,7 +162,7 @@ if __name__ == "__main__":
 
     random_words = random_newlines(random_words, 3)
 
-    with open("random_text2.txt", "w") as file:
+    with open("{}_2.txt".format(args.output[:-4]), "w") as file:
 
         for word in random_words:
 
